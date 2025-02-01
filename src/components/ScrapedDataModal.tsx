@@ -35,22 +35,22 @@ export default function ScrapedDataModal({ isOpen, closeModal, url, chunks }: Sc
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
-                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-white mb-4">
-                  Scraped Data for {url}
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all md:m-0 m-3">
+                <Dialog.Title as="h3" className="md:text-lg text-xs font-medium leading-6 text-white mb-4">
+                  Scraped Data for : {url}
                 </Dialog.Title>
                 <div className="mt-2 max-h-96 overflow-y-auto">
                   {chunks.map((chunk, index) => (
-                    <div key={index} className="mb-4 p-3 bg-gray-700 rounded">
-                      <p className="text-sm text-white">{chunk}</p>
+                    <div key={index} className="mb-4 p-3 bg-gray-700 rounded-xl">
+                      <p className="md:text-sm text-xs text-white">{chunk}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-4 justify-end flex">
                   <button
                     type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    className="inline-flex justify-center rounded-full border border-transparent bg-zinc-400 px-3 py-2 text-sm font-medium text-white md:hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     onClick={closeModal}
                   >
                     Close

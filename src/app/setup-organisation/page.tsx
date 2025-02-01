@@ -36,16 +36,16 @@ export default function SetupOrganisation() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-gray-800/80 backdrop-blur-md p-10 rounded-xl shadow-sm max-w-4xl w-full border border-gray-700 shadow-white"
+        className="bg-gray-800/80 backdrop-blur-md p-10 rounded-xl shadow-sm max-w-4xl w-full border border-gray-700 shadow-white md:m-0 m-5"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-white">
+        <h2 className="md:text-2xl text-lg font-bold mb-6 text-center text-white">
           Setup Organisation
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
             placeholder="Company Name"
-            className="w-full py-2 px-4 rounded-full bg-gray-700 text-white outline-none focus:ring-2 focus:ring-gray-500"
+            className="w-full py-2 px-4 rounded-full bg-gray-700 text-white outline-none focus:ring-2 focus:ring-gray-500 md:text-base text-sm"
             required
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
@@ -53,7 +53,7 @@ export default function SetupOrganisation() {
           <input
             type="url"
             placeholder="Company Website URL"
-            className="w-full py-2 px-4 rounded-full bg-gray-700 text-white outline-none focus:ring-2 focus:ring-gray-500"
+            className="w-full py-2 px-4 rounded-full bg-gray-700 text-white outline-none focus:ring-2 focus:ring-gray-500 md:text-base text-sm"
             required
             value={companyUrl}
             onChange={(e) => setCompanyUrl(e.target.value)}
@@ -62,7 +62,7 @@ export default function SetupOrganisation() {
           <div className="relative">
             <textarea
               placeholder="Company Description"
-              className="w-full py-2 px-4 rounded-xl bg-gray-700 text-white h-24 outline-none focus:ring-2 focus:ring-gray-500"
+              className="w-full py-2 px-4 rounded-xl bg-gray-700 text-white h-24 outline-none focus:ring-2 focus:ring-gray-500 md:text-base text-sm"
               required
               value={companyDescription}
               onChange={(e) => setCompanyDescription(e.target.value)}
@@ -96,7 +96,7 @@ export default function SetupOrganisation() {
           <div className="mt-8 flex justify-end">
             <button
               type="submit"
-              className="w-1/3 bg-gray-800 rounded-full text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-gray-900"
+              className="md:w-1/3 md:text-base text-sm bg-gray-800 rounded-full text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md md:hover:shadow-lg border border-gray-500 md:hover:bg-gray-900"
             >
               Start Scraping →
             </button>

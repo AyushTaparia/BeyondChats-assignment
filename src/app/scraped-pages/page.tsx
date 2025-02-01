@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import ScrapedDataModal from "@/components/ScrapedDataModal";
@@ -11,7 +11,7 @@ type ScrapedPage = {
   chunks: string[];
 };
 
-export default function ScrapedPages() {
+function ScrapedPagesContent() {
   const [scrapedPages, setScrapedPages] = useState<ScrapedPage[]>([]);
   const [selectedPage, setSelectedPage] = useState<ScrapedPage | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -78,24 +78,24 @@ export default function ScrapedPages() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-4xl w-full"
+        className="bg-gray-800/80 backdrop-blur-md p-10 rounded-xl shadow-sm max-w-4xl w-full border border-gray-700 shadow-white md:m-0 m-5"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">
+        <h2 className="md:text-2xl text-lg font-bold mb-6 text-center">
           Scraped Webpages
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {scrapedPages.map((page) => (
             <div
               key={page.url}
-              className={`p-4 rounded cursor-pointer transition duration-300 ${
+              className={`p-4 rounded-xl cursor-pointer transition duration-300 ${
                 page.status === "scraped"
-                  ? "bg-gray-700 hover:bg-gray-600"
+                  ? "bg-gray-700 md:hover:bg-gray-600"
                   : "bg-gray-700 opacity-50"
               }`}
               onClick={() => page.status === "scraped" && openModal(page)}
             >
-              <p className="font-medium">{page.url}</p>
-              <p className="text-sm text-gray-400 capitalize">
+              <p className="font-medium md:text-base text-sm">{page.url}</p>
+              <p className="md:text-sm text-xs text-gray-400 capitalize">
                 {page.status === "pending" ? (
                   <span className="flex items-center">
                     <svg
@@ -130,7 +130,7 @@ export default function ScrapedPages() {
         <div className="mt-8 flex justify-end">
           <button
             onClick={handleContinue}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+            className="md:text-base text-sm bg-blue-600 md:hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
           >
             Continue to Integration
           </button>
@@ -145,5 +145,15 @@ export default function ScrapedPages() {
         />
       )}
     </div>
+  );
+}
+
+export default function ScrapedPages() {
+  return (
+    <Suspense
+      fallback={<div className="text-white text-center">Loading...</div>}
+    >
+      <ScrapedPagesContent />
+    </Suspense>
   );
 }

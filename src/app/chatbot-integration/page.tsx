@@ -72,7 +72,7 @@ export default function ChatbotIntegration() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-gray-800/80 backdrop-blur-md p-10 rounded-xl shadow-sm max-w-3xl w-full border border-gray-700 shadow-white"
+        className="bg-gray-800/80 backdrop-blur-md p-10 rounded-xl shadow-sm max-w-3xl w-full border border-gray-700 shadow-white md:m-0 m-5"
       >
         <AnimatePresence mode="wait">
           {currentSection === "main" && (
@@ -83,19 +83,19 @@ export default function ChatbotIntegration() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <h2 className="text-2xl font-bold mb-6 text-center">
+              <h2 className="md:text-2xl text-base font-bold mb-6 text-center">
                 Chatbot Integration & Testing
               </h2>
-              <div className="space-x-4 flex items-center justify-center">
+              <div className="md:space-x-4 space-y-4 flex md:flex-row flex-col items-center justify-center">
                 <button
                   onClick={handleTestChatbot}
-                  className="w-full bg-gray-800 rounded-full text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-gray-900"
+                  className="w-full bg-gray-800 rounded-full text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md md:hover:shadow-lg border border-gray-500 md:hover:bg-gray-900"
                 >
                   Test Chatbot
                 </button>
                 <button
                   onClick={handleIntegrate}
-                  className="w-full bg-white rounded-full text-gray-800 font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-zinc-300"
+                  className="w-full bg-white rounded-full text-gray-800 font-semibold py-2 px-4 transition-all duration-300 shadow-md md:hover:shadow-lg border border-gray-500 md:hover:bg-zinc-300"
                 >
                   Integrate on Your Website
                 </button>
@@ -115,11 +115,12 @@ export default function ChatbotIntegration() {
               <div className="flex items-center justify-between mb-4">
                 <button
                   onClick={handleBack}
-                  className="text-white font-bold transition duration-300 px-4 py-2 bg-gray-600 rounded-full hover:bg-gray-700 space-x-2"
+                  className="text-white font-bold transition duration-300 md:px-4 md:py-2 md:bg-gray-600 rounded-full md:hover:bg-gray-700 space-x-2"
                 >
-                  <span>&larr;</span> <span> Back</span>
+                  <span>&larr;</span>{" "}
+                  <span className="md:block hidden"> Back</span>
                 </button>
-                <h3 className="text-xl font-semibold">
+                <h3 className="md:text-xl font-semibold">
                   Chatbot Test Environment
                 </h3>
                 <p></p>
@@ -130,8 +131,9 @@ export default function ChatbotIntegration() {
                   integrated.
                 </p>
               </div>
-              <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                Chatbot not working as intended? Share feedback
+              <button className="w-full bg-yellow-600 md:hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded transition duration-300 md:text-base text-sm">
+                Chatbot not working as intended?{" "}
+                <span className="underline">Share feedback</span>
               </button>
             </motion.div>
           )}
@@ -148,34 +150,35 @@ export default function ChatbotIntegration() {
               <div className="flex items-center justify-between mb-4">
                 <button
                   onClick={handleBack}
-                  className="text-white font-bold transition duration-300 px-4 py-2 bg-gray-600 rounded-full hover:bg-gray-700 space-x-2"
+                  className="text-white font-bold transition duration-300 md:px-4 md:py-2 md:bg-gray-600 rounded-full md:hover:bg-gray-700 space-x-2"
                 >
-                  <span>&larr;</span> <span> Back</span>
+                  <span>&larr;</span>{" "}
+                  <span className="md:block hidden"> Back</span>
                 </button>
-                <h3 className="text-xl font-semibold">
+                <h3 className="md:text-xl font-semibold">
                   Integration Instructions
                 </h3>
                 <p> </p>
               </div>
-              <p className="mb-2">
+              <p className="mb-2 md:text-base text-sm">
                 Copy and paste the following code within the {"<head>"} tag of
                 your website:
               </p>
               <SyntaxHighlighter language="javascript" style={docco}>
                 {dummyCode}
               </SyntaxHighlighter>
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex md:flex-row flex-col items-center justify-center gap-4">
                 <button
                   onClick={() => {
                     /* Implement email functionality */
                   }}
-                  className="w-full bg-white rounded-full text-gray-800 font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-zinc-300"
+                  className="w-full bg-white rounded-full text-gray-800 font-semibold py-2 px-4 transition-all duration-300 shadow-md md:hover:shadow-lg border border-gray-500 md:hover:bg-zinc-300"
                 >
                   Email Instructions to Developer
                 </button>
                 <button
                   onClick={handleTestIntegration}
-                  className="w-full bg-gray-800 rounded-full text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-gray-900"
+                  className="w-full bg-gray-800 rounded-full text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md md:hover:shadow-lg border border-gray-500 md:hover:bg-gray-900"
                 >
                   Test Integration -&gt;
                 </button>
@@ -190,33 +193,39 @@ export default function ChatbotIntegration() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="space-y-4 text-center"
+              className="space-y-4 text-center px-4 sm:px-6 md:px-12"
             >
-              <h3 className="text-2xl font-bold mb-4">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4">
                 Integration Successful!
               </h3>
-              <p className="mb-6">
+              <p className="text-sm sm:text-base mb-6">
                 Congratulations! Your chatbot has been successfully integrated.
               </p>
-              <div className="flex items-center justify-center gap-4 ">
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+
+              {/* Primary Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+                <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
                   Explore Admin Panel
                 </button>
-                <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                <button className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition duration-300">
                   Start Talking to Your Chatbot
                 </button>
               </div>
-              <div className="flex justify-center space-x-4">
-                <button className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded transition duration-300">
+
+              {/* Social Media Buttons */}
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4">
+                <button className="w-full sm:w-auto bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded transition duration-300">
                   Share on Twitter
                 </button>
-                <button className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded transition duration-300">
+                <button className="w-full sm:w-auto bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded transition duration-300">
                   Share on Facebook
                 </button>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                <button className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
                   Share on LinkedIn
                 </button>
               </div>
+
+              {/* Back to Setup Button */}
               <button
                 onClick={handleSetup}
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300"

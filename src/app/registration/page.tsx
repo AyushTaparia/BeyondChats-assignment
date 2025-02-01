@@ -26,9 +26,9 @@ export default function Registration() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-gray-800/80 backdrop-blur-md p-10 rounded-xl shadow-sm max-w-md w-full border border-gray-700 shadow-white"
+        className="bg-gray-800/80 backdrop-blur-md p-10 rounded-xl shadow-sm max-w-md w-full border border-gray-700 shadow-white md:m-0 m-5"
       >
-        <h2 className="text-3xl font-bold mb-6 text-center text-white">
+        <h2 className="md:text-3xl text-xl font-bold mb-6 text-center text-white">
           {step === 1 ? "User Registration" : "Verify Your Email"}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -37,13 +37,13 @@ export default function Registration() {
               <input
                 type="text"
                 placeholder="Full Name"
-                className="w-full p-3 rounded-full bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-white"
+                className="w-full px-4 py-2 rounded-full bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 md:text-base text-sm focus:ring-white"
                 required
               />
               <input
                 type="email"
                 placeholder="Email Address"
-                className="w-full p-3 rounded-full bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-white"
+                className="w-full px-4 py-2 rounded-full bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 md:text-base text-sm focus:ring-white"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -51,12 +51,12 @@ export default function Registration() {
               <input
                 type="password"
                 placeholder="Password"
-                className="w-full p-3 rounded-full bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-white"
+                className="w-full px-4 py-2 rounded-full bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 md:text-base text-sm focus:ring-white"
                 required
               />
               <button
                 type="submit"
-                className="w-full bg-gray-800 rounded-full text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-gray-900"
+                className="w-full bg-gray-800 rounded-full md:text-base text-sm text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md md:hover:shadow-lg border border-gray-500 md:hover:bg-gray-900"
               >
                 Next
               </button>
@@ -64,10 +64,10 @@ export default function Registration() {
               <div className="text-center text-gray-400">or</div>
               <button
                 type="button"
-                className="w-full bg-gray-800 text-white font-semibold py-3 px-4 rounded-full transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-gray-900 flex items-center justify-center gap-2"
+                className="w-full bg-gray-800 text-white font-semibold py-3 px-4 rounded-full transition-all duration-300 shadow-md md:hover:shadow-lg border border-gray-500 md:hover:bg-gray-900 flex items-center justify-center gap-2"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="md:w-5 md:h-5 w-4 h-4"
                   viewBox="0 0 48 48"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -88,12 +88,12 @@ export default function Registration() {
                     d="M24 48c6.56 0 12.06-2.16 16.08-5.86l-7.28-5.66c-2.02 1.34-4.52 2.16-8.08 2.16-5.98 0-10.94-4.4-12.87-10.28l-8.69 6.92C6.51 42.78 14.63 48 24 48z"
                   />
                 </svg>
-                Continue with Google
+                <span className="md:text-base text-sm">Continue with Google</span>
               </button>
             </>
           ) : (
             <>
-              <p className="text-center text-gray-300">
+              <p className="text-center text-gray-300 md:text-base text-sm">
                 A verification code has been sent to{" "}
                 <span className="text-blue-400 font-semibold">{email}</span>.
                 Please enter it below.
@@ -101,14 +101,14 @@ export default function Registration() {
               <input
                 type="text"
                 placeholder="Enter Verification Code"
-                className="w-full p-2 rounded-full bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-green-500 text-center tracking-widest text-lg"
+                className="w-full p-2 rounded-full bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-green-500 text-center tracking-widest md:text-lg text-sm"
                 required
                 value={verificationCode}
                 onChange={(e) => setVerificationCode(e.target.value)}
               />
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 shadow-md hover:shadow-lg"
+                className="w-full bg-gradient-to-r md:text-base text-sm from-green-500 to-green-700 md:hover:from-green-600 md:hover:to-green-800 text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 shadow-md md:hover:shadow-lg"
               >
                 Verify & Continue
               </button>

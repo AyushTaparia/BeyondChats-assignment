@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chatbot Integration Project
 
-## Getting Started
+This project is a **Next.js** application that guides users through the process of setting up, integrating, and testing a chatbot for their website. It features a step-by-step workflow, including **user registration, organization setup, web scraping, and chatbot integration**.
 
-First, run the development server:
+## 🚀 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Check out the live demo of the project: [Chatbot Integration](https://beyond-chats-assignment-seven.vercel.app/)
+
+## 🛠 Technologies Used
+
+- **Next.js 14** (App Router)
+- **React 18**
+- **TypeScript**
+- **Tailwind CSS**
+- **Framer Motion** (for animations)
+- **React Syntax Highlighter** (for code snippets)
+- **React Confetti** (for success celebration)
+- **Headless UI** (for accessible UI components)
+- **Lucide React Icons** (for modern UI icons)
+
+## ✅ Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Node.js** (v16.8.0 or higher)
+- **npm** (v7 or higher) or **yarn**
+- **Git**
+
+## 🏗 Setup Instructions
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/chatbot-integration-project.git
+   ```
+2. **Navigate to the project directory:**
+   ```bash
+   cd chatbot-integration-project
+   ```
+3. **Install dependencies:**
+   ```bash
+   npm install  # or yarn install
+   ```
+4. **Start the development server:**
+   ```bash
+   npm run dev  # or yarn dev
+   ```
+5. **Open the project in your browser:**
+   ```
+   http://localhost:3000
+   ```
+
+## 🔧 Project Structure
+
+```
+├── src/
+│   ├── app/             # Next.js app directory
+│       ├── (pages)/             # multiple pages
+│       ├── layout/              # layout for the page
+│       ├── global.css/          # css declared globally
+│   ├── components/      # Reusable React components
+│
+├── package.json        # Project dependencies & scripts
+├── tailwind.config.js  # Tailwind CSS configuration
+├── next.config.js      # Next.js configuration
+└── README.md           # Project documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📌 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+✅ **User Registration & Organization Setup**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Allows users to register and create an organization for chatbot integration.
 
-## Learn More
+✅ **Chatbot Integration Instructions**
 
-To learn more about Next.js, take a look at the following resources:
+- Provides a step-by-step guide on adding chatbot scripts to the user's website.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+✅ **Testing & Debugging Environment**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Simulates chatbot integration and allows users to test before deploying.
 
-## Deploy on Vercel
+✅ **Smooth Animations & UI Enhancements**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Uses **Framer Motion** for smooth transitions and **Tailwind CSS** for modern styling.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+✅ **Code Snippet Support**
+
+- Displays chatbot integration scripts using **React Syntax Highlighter**.
+
+✅ **Confetti Celebration on Success**
+
+- Uses **React Confetti** to enhance user experience when integration is successful.
+
+## 📜 How to Integrate the Chatbot
+
+1. **Copy the provided script** from the integration page.
+2. **Paste the script** inside the `<head>` tag of your website’s HTML.
+3. **Deploy your website** and test the chatbot functionality.
+
+---
+
+### 📧 Contact
+
+If you have any questions or need support, feel free to reach out at [your-email@example.com](mailto:your-email@example.com).
+
+Happy Coding! 🚀
