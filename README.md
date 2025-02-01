@@ -97,10 +97,4 @@ Before you begin, ensure you have the following installed:
 2. **Paste the script** inside the `<head>` tag of your website’s HTML.
 3. **Deploy your website** and test the chatbot functionality.
 
----
-
-### 📧 Contact
-
-If you have any questions or need support, feel free to reach out at [your-email@example.com](mailto:your-email@example.com).
-
 Happy Coding! 🚀
