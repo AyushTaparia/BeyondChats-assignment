@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import ReactConfetti from "react-confetti";
+import { useRouter } from "next/navigation";
 
 SyntaxHighlighter.registerLanguage("javascript", js);
 
@@ -20,84 +21,142 @@ const dummyCode = `
 `;
 
 export default function ChatbotIntegration() {
-  const [showTestChatbot, setShowTestChatbot] = useState(false);
-  const [showIntegrationOptions, setShowIntegrationOptions] = useState(false);
+  const [currentSection, setCurrentSection] = useState<
+    "main" | "test" | "integrate" | "success"
+  >("main");
   const [integrationSuccess, setIntegrationSuccess] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (integrationSuccess) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [integrationSuccess]);
 
   const handleTestChatbot = () => {
-    setShowTestChatbot(true);
+    setCurrentSection("test");
   };
 
   const handleIntegrate = () => {
-    setShowIntegrationOptions(true);
+    setCurrentSection("integrate");
   };
 
   const handleTestIntegration = () => {
     // Simulating integration test
     setTimeout(() => {
       setIntegrationSuccess(true);
+      setCurrentSection("success");
     }, 2000);
   };
 
+  const handleBack = () => {
+    setCurrentSection("main");
+  };
+
+  const handleSetup = () => {
+    router.push("/setup-organisation");
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 p-4">
-      {integrationSuccess && <ReactConfetti />}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      {integrationSuccess && (
+        <ReactConfetti width={window.innerWidth} height={window.innerHeight} />
+      )}{" "}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-4xl w-full"
+        className="bg-gray-800/80 backdrop-blur-md p-10 rounded-xl shadow-sm max-w-3xl w-full border border-gray-700 shadow-white"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Chatbot Integration & Testing
-        </h2>
-        <div className="space-y-4">
-          <button
-            onClick={handleTestChatbot}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
-          >
-            Test Chatbot
-          </button>
-          <button
-            onClick={handleIntegrate}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300"
-          >
-            Integrate on Your Website
-          </button>
-        </div>
+        <AnimatePresence mode="wait">
+          {currentSection === "main" && (
+            <motion.div
+              key="main"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h2 className="text-2xl font-bold mb-6 text-center">
+                Chatbot Integration & Testing
+              </h2>
+              <div className="space-x-4 flex items-center justify-center">
+                <button
+                  onClick={handleTestChatbot}
+                  className="w-full bg-gray-800 rounded-full text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-gray-900"
+                >
+                  Test Chatbot
+                </button>
+                <button
+                  onClick={handleIntegrate}
+                  className="w-full bg-white rounded-full text-gray-800 font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-zinc-300"
+                >
+                  Integrate on Your Website
+                </button>
+              </div>
+            </motion.div>
+          )}
 
-        {showTestChatbot && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-8 p-4 bg-gray-700 rounded"
-          >
-            <h3 className="text-xl font-semibold mb-4">
-              Chatbot Test Environment
-            </h3>
-            <div className="bg-white text-black p-4 rounded h-64 overflow-y-auto">
-              {/* Simulated website content */}
-              <p>
-                This is a simulation of your website with the chatbot
-                integrated.
-              </p>
-            </div>
-            <button className="mt-4 bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-              Chatbot not working as intended? Share feedback
-            </button>
-          </motion.div>
-        )}
+          {currentSection === "test" && (
+            <motion.div
+              key="test"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-4"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <button
+                  onClick={handleBack}
+                  className="text-white font-bold transition duration-300 px-4 py-2 bg-gray-600 rounded-full hover:bg-gray-700 space-x-2"
+                >
+                  <span>&larr;</span> <span> Back</span>
+                </button>
+                <h3 className="text-xl font-semibold">
+                  Chatbot Test Environment
+                </h3>
+                <p></p>
+              </div>
+              <div className="bg-white text-black p-4 rounded h-64 overflow-y-auto">
+                <p>
+                  This is a simulation of your website with the chatbot
+                  integrated.
+                </p>
+              </div>
+              <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                Chatbot not working as intended? Share feedback
+              </button>
+            </motion.div>
+          )}
 
-        {showIntegrationOptions && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-8 space-y-4"
-          >
-            <div className="bg-gray-700 p-4 rounded">
-              <h3 className="text-xl font-semibold mb-4">
-                Integration Instructions
-              </h3>
+          {currentSection === "integrate" && (
+            <motion.div
+              key="integrate"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-4"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <button
+                  onClick={handleBack}
+                  className="text-white font-bold transition duration-300 px-4 py-2 bg-gray-600 rounded-full hover:bg-gray-700 space-x-2"
+                >
+                  <span>&larr;</span> <span> Back</span>
+                </button>
+                <h3 className="text-xl font-semibold">
+                  Integration Instructions
+                </h3>
+                <p> </p>
+              </div>
               <p className="mb-2">
                 Copy and paste the following code within the {"<head>"} tag of
                 your website:
@@ -105,41 +164,48 @@ export default function ChatbotIntegration() {
               <SyntaxHighlighter language="javascript" style={docco}>
                 {dummyCode}
               </SyntaxHighlighter>
-            </div>
-            <button
-              onClick={() => {
-                /* Implement email functionality */
-              }}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition duration-300"
-            >
-              Email Instructions to Developer
-            </button>
-            <button
-              onClick={handleTestIntegration}
-              className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded transition duration-300"
-            >
-              Test Integration
-            </button>
-          </motion.div>
-        )}
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  onClick={() => {
+                    /* Implement email functionality */
+                  }}
+                  className="w-full bg-white rounded-full text-gray-800 font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-zinc-300"
+                >
+                  Email Instructions to Developer
+                </button>
+                <button
+                  onClick={handleTestIntegration}
+                  className="w-full bg-gray-800 rounded-full text-white font-semibold py-2 px-4 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-500 hover:bg-gray-900"
+                >
+                  Test Integration -&gt;
+                </button>
+              </div>
+            </motion.div>
+          )}
 
-        {integrationSuccess && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="mt-8 p-6 bg-green-700 rounded text-center"
-          >
-            <h3 className="text-2xl font-bold mb-4">Integration Successful!</h3>
-            <p className="mb-6">
-              Congratulations! Your chatbot has been successfully integrated.
-            </p>
-            <div className="space-y-4">
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                Explore Admin Panel
-              </button>
-              <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                Start Talking to Your Chatbot
-              </button>
+          {currentSection === "success" && (
+            <motion.div
+              key="success"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-4 text-center"
+            >
+              <h3 className="text-2xl font-bold mb-4">
+                Integration Successful!
+              </h3>
+              <p className="mb-6">
+                Congratulations! Your chatbot has been successfully integrated.
+              </p>
+              <div className="flex items-center justify-center gap-4 ">
+                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                  Explore Admin Panel
+                </button>
+                <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                  Start Talking to Your Chatbot
+                </button>
+              </div>
               <div className="flex justify-center space-x-4">
                 <button className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded transition duration-300">
                   Share on Twitter
@@ -151,9 +217,15 @@ export default function ChatbotIntegration() {
                   Share on LinkedIn
                 </button>
               </div>
-            </div>
-          </motion.div>
-        )}
+              <button
+                onClick={handleSetup}
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+              >
+                Back to Setup Organisation
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
